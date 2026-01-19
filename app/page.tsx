@@ -10,7 +10,7 @@ import Filters from '@/components/Filters';
 import CallsTable from '@/components/CallsTable';
 import CallModal from '@/components/CallModal';
 
-const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1bG5YLL1btGfc9igGeJFZKbKzOWAE3nxNisq3r5FXo5U/export?format=csv&gid=0';
+const SHEET_CSV_URL = '/api/calls';
 const REFRESH_INTERVAL = 30000; // 30 segundos
 
 export default function Home() {
@@ -32,9 +32,8 @@ export default function Home() {
         if (showSyncIndicator) setIsSyncing(true);
 
         try {
-            // Agregar timestamp para evitar caché del navegador
-            const cacheBuster = `&t=${new Date().getTime()}`;
-            const response = await fetch(SHEET_CSV_URL + cacheBuster);
+            // El API route ya maneja el cache busting con headers y timestamp
+            const response = await fetch(SHEET_CSV_URL);
             const csvText = await response.text();
 
             Papa.parse(csvText, {
