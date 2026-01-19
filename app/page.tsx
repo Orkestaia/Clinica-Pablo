@@ -32,7 +32,9 @@ export default function Home() {
         if (showSyncIndicator) setIsSyncing(true);
 
         try {
-            const response = await fetch(SHEET_CSV_URL);
+            // Agregar timestamp para evitar caché del navegador
+            const cacheBuster = `&t=${new Date().getTime()}`;
+            const response = await fetch(SHEET_CSV_URL + cacheBuster);
             const csvText = await response.text();
 
             Papa.parse(csvText, {

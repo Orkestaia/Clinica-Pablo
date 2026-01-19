@@ -40,13 +40,13 @@ export default function CallsTable({ calls, onCallClick }: CallsTableProps) {
                                 Teléfono
                             </th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                Tipo
+                                Estado
+                            </th>
+                            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                Motivo
                             </th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                 Interés
-                            </th>
-                            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                Estado
                             </th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                 Duración
@@ -67,31 +67,34 @@ export default function CallsTable({ calls, onCallClick }: CallsTableProps) {
                                     {formatDate(call.Timestamp)}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="flex items-center gap-2">
-                                        <User className="w-4 h-4 text-gray-400" />
-                                        <span className="text-sm font-medium text-gray-900">
-                                            {call.Nombre_Paciente || '-'}
-                                        </span>
+                                    <div className="flex flex-col">
+                                        <div className="flex items-center gap-2">
+                                            <User className="w-4 h-4 text-gray-400" />
+                                            <span className="text-sm font-medium text-gray-900">
+                                                {call.Nombre_Paciente || '-'}
+                                            </span>
+                                        </div>
+                                        <div className={`flex items-center gap-1 mt-1 ${getTipoPacienteColor(call.Tipo_Paciente)}`}>
+                                            {getTipoPacienteIcon(call.Tipo_Paciente)}
+                                            <span className="text-xs capitalize">
+                                                {call.Tipo_Paciente || ''}
+                                            </span>
+                                        </div>
                                     </div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                     {call.Telefono || '-'}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className={`flex items-center gap-2 ${getTipoPacienteColor(call.Tipo_Paciente)}`}>
-                                        {getTipoPacienteIcon(call.Tipo_Paciente)}
-                                        <span className="text-sm font-medium capitalize">
-                                            {call.Tipo_Paciente || '-'}
-                                        </span>
-                                    </div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 capitalize">
-                                    {call.Tratamiento_Interes?.replace('_', ' ') || '-'}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
                                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getEstadoBadgeColor(call.Estado)}`}>
                                         {call.Estado || '-'}
                                     </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 capitalize">
+                                    {call.Motivo_Llamada?.replace('_', ' ') || '-'}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 capitalize">
+                                    {call.Tratamiento_Interes?.replace('_', ' ') || '-'}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                     {call.Duracion || '-'}
