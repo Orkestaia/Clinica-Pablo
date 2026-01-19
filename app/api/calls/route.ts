@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1bG5YLL1btGfc9igGeJFZKbKzOWAE3nxNisq3r5FXo5U/export?format=csv&gid=0';
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTAuh8Cb9JWJyBVZqxm5LeduLuhcdj0uKq2GzN3gMI9T8mHSkgrgQv_PhyaDtl9u4mHCC7MYM77kLdC/pub?output=csv';
 
 export async function GET() {
     try {
