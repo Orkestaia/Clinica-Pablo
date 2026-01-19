@@ -50,7 +50,7 @@ export default function Home() {
                     setLastUpdate(new Date());
                     setIsLoading(false);
                 },
-                error: (error) => {
+                error: (error: any) => {
                     console.error('Error parsing CSV:', error);
                     setIsLoading(false);
                 }
